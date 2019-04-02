@@ -31,26 +31,23 @@ public:
   /// @return number of iterations needed for sorting
   unsigned long long sort(const T* arr);
 
-  /// Check if array is sorted
-  /// @param [in] arr the array to check
-  /// @return true if sorted, false otherwise
-  bool isSorted(const T* arr);
-
-  /// Return the index
-  const int *getIndex();
+  /// Return the index array
+  const size_t* getIndex(void);
 
 
 private:
 
   Logger *m_log;        ///< logger
   size_t  m_len;        ///< array length
-  int    *m_index;      ///< index array
+  size_t *m_index;      ///< index array
 
-  /// Print the array in order of m_index
-  /// @param [in] arr the array to print
-  // void printArray(const T* arr);
+  /// Check if array is sorted
+  /// @param [in] arr the array to check
+  /// @return true if sorted, false otherwise
+  bool isSorted(const T* arr);
 
-  void shuffleIndex();
+  /// Shuffle the index array
+  void shuffleIndex(void);
 
 };
 
@@ -59,7 +56,7 @@ template <class T> Sorter<T>::Sorter(size_t len) {
 
   m_log = new Logger();
   m_len = len;
-  m_index = (int*)malloc(m_len * sizeof(int));
+  m_index = (size_t*)malloc(m_len * sizeof(size_t));
 
   // Initialize in default order to catch pre-sorted arrays
   for(size_t i = 0; i < m_len; i++) {
@@ -70,7 +67,7 @@ template <class T> Sorter<T>::Sorter(size_t len) {
 
 template <class T> Sorter<T>::~Sorter() {
   m_log->always("Exiting...");
-  free (m_index);
+  free(m_index);
   delete m_log;
 }
 
@@ -80,7 +77,7 @@ template <class T> unsigned long long Sorter<T>::sort(const T* arr) {
     shuffleIndex();
     i++;
   }
-  m_log->always("Array is sorted after %ld iterations:", i);
+  m_log->always("Array is sorted after %llu iterations:", i);
   return i;
 }
 
@@ -106,8 +103,8 @@ template <class T> void Sorter<T>::shuffleIndex() {
   return;
 }
 
-template <class T> const int* Sorter<T>::getIndex() {
-  return (const int*) m_index;
+template <class T> const size_t* Sorter<T>::getIndex() {
+  return (const size_t*) m_index;
 }
 
 #endif //!__RANDOMSORTER_H_
