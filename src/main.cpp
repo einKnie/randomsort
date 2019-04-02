@@ -51,7 +51,7 @@ int main (int argc, char* argv[]) {
   Sorter<int> *sort = new Sorter<int>(len);
   fillIntArray(arr, len, range, true);
   sort->sort(arr);
-  const size_t *index = sort->getIndex();
+  const uint8_t *index = sort->getIndex();
 
   for (size_t i = 0; i < len; i++) {
     printf("position %d: %d\n", index[i], arr[index[i]]);
@@ -62,7 +62,7 @@ int main (int argc, char* argv[]) {
   Sorter<double> *sort = new Sorter<double>(len);
   fillFloatArray(arr, len, range, true);
   sort->sort(arr);
-  const size_t *index = sort->getIndex();
+  const uint8_t *index = sort->getIndex();
 
   for (size_t i = 0; i < len; i++) {
     printf("position %d: %.2f\n", index[i], arr[index[i]]);

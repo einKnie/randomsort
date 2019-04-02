@@ -4,7 +4,7 @@ SRC_DIR     = $(BASE)/../src
 INC_DIR     = $(BASE)/../inc
 TARGET_DIR  = $(BASE)/../bin
 OBJ_DIR     = $(TARGET_DIR)/obj
-TARGET      = sorter
+TARGET      = sorter2
 
 LIBS_PATH   =
 STD_LIBS    =

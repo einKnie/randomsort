@@ -8,7 +8,7 @@
   * | (___   ___  _ __| |_ ___ _ __
   *  \___ \ / _ \| '__| __/ _ \ '__|
   *  ____) | (_) | |  | ||  __/ |
-  * |_____/ \___/|_|   \__\___|_|  v0.1
+  * |_____/ \___/|_|   \__\___|_|  v0.2
   * einKnie@gmx.at
   */
 
@@ -17,6 +17,7 @@
 
 #include "../libraries/cpp_log.h"
 #include <stdlib.h>
+#include <stdint.h>
 #include <time.h>
 
 template <class T> class Sorter {
@@ -32,14 +33,14 @@ public:
   unsigned long long sort(const T* arr);
 
   /// Return the index array
-  const size_t* getIndex(void);
+  const uint8_t* getIndex(void);
 
 
 private:
 
-  Logger *m_log;        ///< logger
-  size_t  m_len;        ///< array length
-  size_t *m_index;      ///< index array
+  Logger  *m_log;        ///< logger
+  size_t   m_len;        ///< array length
+  uint8_t *m_index;      ///< index array
 
   /// Check if array is sorted
   /// @param [in] arr the array to check
@@ -56,7 +57,7 @@ template <class T> Sorter<T>::Sorter(size_t len) {
 
   m_log = new Logger();
   m_len = len;
-  m_index = (size_t*)malloc(m_len * sizeof(size_t));
+  m_index = (uint8_t*)malloc(m_len * sizeof(uint8_t));
 
   // Initialize in default order to catch pre-sorted arrays
   for(size_t i = 0; i < m_len; i++) {
@@ -92,7 +93,7 @@ template <class T> bool Sorter<T>::isSorted(const T* arr) {
 
 template <class T> void Sorter<T>::shuffleIndex() {
   for (size_t i = 0; i < m_len; i++) {
-    m_index[i] = rand() % m_len;
+    m_index[i] = (uint8_t)rand() % m_len;
     for (size_t j = 0; j < i; j++) {
       if (m_index[j] == m_index[i]) {
         i--;
@@ -103,8 +104,8 @@ template <class T> void Sorter<T>::shuffleIndex() {
   return;
 }
 
-template <class T> const size_t* Sorter<T>::getIndex() {
-  return (const size_t*) m_index;
+template <class T> const uint8_t* Sorter<T>::getIndex() {
+  return (const uint8_t*) m_index;
 }
 
 #endif //!__RANDOMSORTER_H_
