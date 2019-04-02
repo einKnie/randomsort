@@ -4,7 +4,7 @@ SRC_DIR     = $(BASE)/../src
 INC_DIR     = $(BASE)/../inc
 TARGET_DIR  = $(BASE)/../bin
 OBJ_DIR     = $(TARGET_DIR)/obj
-TARGET      = sorter2
+TARGET      = sorter
 
 LIBS_PATH   =
 STD_LIBS    =
@@ -12,7 +12,7 @@ STD_LIBS    =
 CC          = g++
 CFLAGS      = -Wall -std=c++11 -pedantic -D_POSIX_C_SOURCE=200809L -I$(INC_DIR) -pg
 LIB_FLAGS   =
-LIBS        = -lcpplogging -lutils
+LIBS        =# -lcpplogging -lutils
 
 # only add library paths if libraries are used
 ifeq ($(strip $(LIBS)),)
@@ -21,12 +21,13 @@ LIBS_PATH   := $(BASE)/../../libraries
 LIB_FLAGS   := -L$(LIBS_PATH)/bin
 STD_LIBS    := $(LIBS_PATH)/bin/libcpplogging.a $(LIBS_PATH)/bin/libutils.a
 CFLAGS      += -I$(LIBS_PATH)
+DEPS         = $(patsubst %,$(LIBS_PATH)/%.h, *)
 endif
 
 SRCS       := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ         = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
-DEPS        = $(patsubst %,$(INC_DIR)/%.h, *)
-DEPS       += $(patsubst %,$(LIBS_PATH)/%.h, *)
+DEPS       += $(patsubst %,$(INC_DIR)/%.h, *)
+
 
 .PHONY: all clean
 

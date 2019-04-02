@@ -15,7 +15,6 @@
 #ifndef __RANDOMSORTER_H_
 #define __RANDOMSORTER_H_
 
-#include "../libraries/cpp_log.h"
 #include <stdlib.h>
 #include <stdint.h>
 #include <time.h>
@@ -38,7 +37,6 @@ public:
 
 private:
 
-  Logger  *m_log;        ///< logger
   size_t   m_len;        ///< array length
   uint8_t *m_index;      ///< index array
 
@@ -55,7 +53,6 @@ private:
 template <class T> Sorter<T>::Sorter(size_t len) {
   srand(time(NULL));
 
-  m_log = new Logger();
   m_len = len;
   m_index = (uint8_t*)malloc(m_len * sizeof(uint8_t));
 
@@ -63,13 +60,10 @@ template <class T> Sorter<T>::Sorter(size_t len) {
   for(size_t i = 0; i < m_len; i++) {
     m_index[i] = i;
   }
-  m_log->always("New sorter created");
 }
 
 template <class T> Sorter<T>::~Sorter() {
-  m_log->always("Exiting...");
   free(m_index);
-  delete m_log;
 }
 
 template <class T> unsigned long long Sorter<T>::sort(const T* arr) {
@@ -78,7 +72,6 @@ template <class T> unsigned long long Sorter<T>::sort(const T* arr) {
     shuffleIndex();
     i++;
   }
-  m_log->always("Array is sorted after %llu iterations:", i);
   return i;
 }
 

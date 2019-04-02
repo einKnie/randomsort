@@ -1,4 +1,5 @@
 #include "sorter.h"
+#include <stdio.h>
 
 void fillIntArray(int* arr, size_t len, size_t range=0, bool unique=true) {
   size_t r = (range == 0)  ? len : range;
@@ -34,7 +35,7 @@ void fillFloatArray(double* arr, size_t len, size_t range=0, bool unique=true) {
   return;
 }
 
-// #define _USE_FLOAT_
+#define _USE_FLOAT_
 
 int main (int argc, char* argv[]) {
 
@@ -47,10 +48,11 @@ int main (int argc, char* argv[]) {
   size_t range = (argc > 2) ? atoi(argv[2]) : len;
 
 #ifndef _USE_FLOAT_
+  // Integer sorting
   int *arr = (int*)malloc(len * sizeof(int));
   Sorter<int> *sort = new Sorter<int>(len);
   fillIntArray(arr, len, range, true);
-  sort->sort(arr);
+  printf("Array is sorted after %llu iterations\n", sort->sort(arr));
   const uint8_t *index = sort->getIndex();
 
   for (size_t i = 0; i < len; i++) {
@@ -58,10 +60,11 @@ int main (int argc, char* argv[]) {
   }
 
 #else
+  // Double sorting
   double *arr = (double*)malloc(len * sizeof(double));
   Sorter<double> *sort = new Sorter<double>(len);
   fillFloatArray(arr, len, range, true);
-  sort->sort(arr);
+  printf("Array is sorted after %llu iterations\n", sort->sort(arr));
   const uint8_t *index = sort->getIndex();
 
   for (size_t i = 0; i < len; i++) {
