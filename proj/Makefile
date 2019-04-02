@@ -23,7 +23,7 @@ STD_LIBS    := $(LIBS_PATH)/bin/libcpplogging.a $(LIBS_PATH)/bin/libutils.a
 CFLAGS      += -I$(LIBS_PATH)
 endif
 
-SRCS        = $(SRC_DIR)/main.cpp $(SRC_DIR)/sorter.cpp
+SRCS       := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ         = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 DEPS        = $(patsubst %,$(INC_DIR)/%.h, *)
 DEPS       += $(patsubst %,$(LIBS_PATH)/%.h, *)
