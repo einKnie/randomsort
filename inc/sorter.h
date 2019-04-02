@@ -36,6 +36,9 @@ public:
   /// @return true if sorted, false otherwise
   bool isSorted(const T* arr);
 
+  /// Return the index
+  const int *getIndex();
+
 
 private:
 
@@ -45,7 +48,7 @@ private:
 
   /// Print the array in order of m_index
   /// @param [in] arr the array to print
-  void printArray(const T* arr);
+  // void printArray(const T* arr);
 
   void shuffleIndex();
 
@@ -78,7 +81,6 @@ template <class T> unsigned long long Sorter<T>::sort(const T* arr) {
     i++;
   }
   m_log->always("Array is sorted after %ld iterations:", i);
-  printArray(arr);
   return i;
 }
 
@@ -104,10 +106,8 @@ template <class T> void Sorter<T>::shuffleIndex() {
   return;
 }
 
-template <class T> void Sorter<T>::printArray(const T* arr) {
-  for (size_t i = 0; i < m_len; i++) {
-    m_log->info("position %i: %i", m_index[i], arr[m_index[i]]);
-  }
+template <class T> const int* Sorter<T>::getIndex() {
+  return (const int*) m_index;
 }
 
 #endif //!__RANDOMSORTER_H_
