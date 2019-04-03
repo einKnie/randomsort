@@ -10,7 +10,7 @@ LIBS_PATH   =
 STD_LIBS    =
 
 CC          = g++
-CFLAGS      = -Wall -std=c++11 -pedantic -D_POSIX_C_SOURCE=200809L -I$(INC_DIR) -pg
+CFLAGS      = -Wall -std=c++11 -pedantic -D_POSIX_C_SOURCE=200809L -I$(INC_DIR)
 LIB_FLAGS   =
 LIBS        =# -lcpplogging -lutils
 
