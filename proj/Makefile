@@ -7,7 +7,7 @@ OBJ_DIR     = $(TARGET_DIR)/obj
 TARGET      = sorter
 
 CC          = g++
-CFLAGS      = -Wall -std=c++11 -pedantic -D_POSIX_C_SOURCE=200809L -I$(INC_DIR)
+CFLAGS      = -Wall -pedantic -I$(INC_DIR)
 
 SRCS       := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ         = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
