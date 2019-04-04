@@ -35,7 +35,7 @@ void fillFloatArray(double* arr, uint8_t len, uint8_t range=0, bool unique=true)
   return;
 }
 
-// #define _USE_FLOAT_
+// #define _USE_DOUBLE_
 
 int main (int argc, char* argv[]) {
 
@@ -47,7 +47,7 @@ int main (int argc, char* argv[]) {
   uint8_t len = atoi(argv[1]);
   uint8_t range = (argc > 2) ? atoi(argv[2]) : len;
 
-#ifndef _USE_FLOAT_
+#ifndef _USE_DOUBLE_
   // Integer sorting
   int *arr = (int*)malloc(len * sizeof(int));
   Sorter<int> *sort = new Sorter<int>(len);

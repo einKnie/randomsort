@@ -26,7 +26,8 @@ public:
   Sorter(uint8_t len);
   ~Sorter();
 
-  /// Sort an array
+  /// Sort an array \a arr
+  /// @return the number of iterations needed
   uint64_t sort(const T* arr);
 
   /// Return the index array
@@ -52,7 +53,7 @@ template <class T> Sorter<T>::Sorter(uint8_t len) {
   m_len = len;
   m_index = (uint8_t*)malloc(m_len * sizeof(uint8_t));
 
-  // Initialize in default order to catch pre-sorted arrays
+  // Initialize index in default order to catch pre-sorted arrays
   for (uint8_t i = 0; i < m_len; i++) {
     m_index[i] = i;
   }
