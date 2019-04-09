@@ -1,7 +1,6 @@
 # C++ Random sort
 
-This is a simple implementation of a random sorting algorithm (also: Bogosort)
-written in C++.
+This is a simple implementation of a random sorting algorithm written in C++.
 
 ## Implementation
 

@@ -2,4 +2,4 @@
 **/*.log
 **/doc/*
 **/*.out
-**/analysis.txt
+**/*.txt
